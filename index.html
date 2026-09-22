@@ -1,3 +1,9 @@
+Here is the updated code! When they click "Yes!", it smoothly transitions to a cute time-picker screen with options like 5:30 PM, 6:00 PM, and 6:30 PM, and then gives a final confirmation with the exact time they chose.
+
+The Updated Code:
+You can completely replace the code inside your index.html file with this:
+
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +36,7 @@
             gap: 20px;
             align-items: center;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         button {
@@ -41,6 +48,7 @@
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s ease;
+            margin: 5px;
         }
 
         #yesBtn {
@@ -58,21 +66,32 @@
             color: #495057;
             position: relative;
         }
+
+        .time-btn {
+            background-color: #ff758c;
+            color: white;
+        }
+
+        .time-btn:hover {
+            background-color: #ff5273;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
 
-    <h1>Do you want to go get pancakes Saturday and then hang out? 🥞✨</h1>
-    
-    <div class="buttons">
-        <button id="yesBtn" onclick="sayYes()">Yes! 🥰</button>
-        <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No 😢</button>
+    <div id="content" style="display: flex; flex-direction: column; align-items: center;">
+        <h1 id="question">Do you want to go get pancakes Saturday and then hang out? 🥞✨</h1>
+        
+        <div class="buttons" id="buttonContainer">
+            <button id="yesBtn" onclick="showTimePicker()">Yes! 🥰</button>
+            <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No 😢</button>
+        </div>
     </div>
 
     <script>
         function moveNo() {
             const noBtn = document.getElementById('noBtn');
-            // Generate random coordinates within the window bounds
             const maxX = window.innerWidth - noBtn.offsetWidth - 50;
             const maxY = window.innerHeight - noBtn.offsetHeight - 50;
             
@@ -84,9 +103,20 @@
             noBtn.style.top = randomY + 'px';
         }
 
-        function sayYes() {
-            document.body.innerHTML = `
-                <h1 style="color: #ff4d6d; font-size: 2.5rem;">Yay! See you Saturday for pancakes! 🥞💛✨</h1>
+        function showTimePicker() {
+            document.getElementById('question').innerText = "Yay! What time works best? ⏰🥞";
+            
+            const btnContainer = document.getElementById('buttonContainer');
+            btnContainer.innerHTML = `
+                <button class="time-btn" onclick="selectTime('5:30 PM')">5:30 PM 🥞</button>
+                <button class="time-btn" onclick="selectTime('6:00 PM')">6:00 PM 🥞</button>
+                <button class="time-btn" onclick="selectTime('6:30 PM')">6:30 PM 🥞</button>
+            `;
+        }
+
+        function selectTime(time) {
+            document.getElementById('content').innerHTML = `
+                <h1 style="color: #ff4d6d; font-size: 2.3rem;">Yay! See you Saturday at ${time} for pancakes! 🥞💛✨</h1>
             `;
         }
     </script>
