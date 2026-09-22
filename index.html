@@ -1,4 +1,3 @@
-HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,6 +109,21 @@ HTML
         }
 
         function selectTime(time) {
+            // Sends an email notification to you behind the scenes
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    access_key: "158e09db-c065-4cdb-a63e-699e584304a7", // <-- Paste your Web3Forms key here
+                    subject: "Pancake Date Confirmed! 🥞",
+                    message: `They said yes and picked ${time}!`
+                })
+            });
+
+            // Updates the screen for them
             document.getElementById('content').innerHTML = `
                 <h1 style="color: #ff4d6d; font-size: 2.3rem;">Yay! See you Saturday at ${time} for pancakes! 🥞💛✨</h1>
             `;
