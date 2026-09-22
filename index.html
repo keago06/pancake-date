@@ -18,10 +18,20 @@
             overflow: hidden;
         }
 
+        .cat-img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+            border: 4px solid white;
+        }
+
         h1 {
             color: #d63384;
-            margin-bottom: 40px;
-            font-size: 2rem;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
             padding: 0 20px;
         }
 
@@ -75,6 +85,7 @@
 <body>
 
     <div id="content" style="display: flex; flex-direction: column; align-items: center;">
+        <img src="cat.jpg" alt="Cute Cat" class="cat-img">
         <h1 id="question">Do you want to go get pancakes Saturday and then hang out? 🥞✨</h1>
         
         <div class="buttons" id="buttonContainer">
@@ -109,7 +120,6 @@
         }
 
         function selectTime(time) {
-            // Sends an email notification to you behind the scenes
             fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 headers: {
@@ -117,15 +127,15 @@
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({
-                    access_key: "158e09db-c065-4cdb-a63e-699e584304a7", // <-- Paste your Web3Forms key here
+                    access_key: "YOUR_ACCESS_KEY_HERE", // <-- Paste your Web3Forms key here
                     subject: "Pancake Date Confirmed! 🥞",
                     message: `They said yes and picked ${time}!`
                 })
             });
 
-            // Updates the screen for them
             document.getElementById('content').innerHTML = `
-                <h1 style="color: #ff4d6d; font-size: 2.3rem;">Yay! See you Saturday at ${time} for pancakes! 🥞💛✨</h1>
+                <img src="cat.jpg" alt="Cute Cat" class="cat-img">
+                <h1 style="color: #ff4d6d; font-size: 2.1rem;">Yay! See you Saturday at ${time} for pancakes! 🥞💛✨</h1>
             `;
         }
     </script>
