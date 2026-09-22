@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pancake Date? 🥞</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fff0f5;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #d63384;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            padding: 0 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 28px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        #yesBtn:hover {
+            background-color: #e63956;
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            background-color: #ced4da;
+            color: #495057;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Do you want to go get pancakes Saturday and then hang out? 🥞✨</h1>
+    
+    <div class="buttons">
+        <button id="yesBtn" onclick="sayYes()">Yes! 🥰</button>
+        <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No 😢</button>
+    </div>
+
+    <script>
+        function moveNo() {
+            const noBtn = document.getElementById('noBtn');
+            // Generate random coordinates within the window bounds
+            const maxX = window.innerWidth - noBtn.offsetWidth - 50;
+            const maxY = window.innerHeight - noBtn.offsetHeight - 50;
+            
+            const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        function sayYes() {
+            document.body.innerHTML = `
+                <h1 style="color: #ff4d6d; font-size: 2.5rem;">Yay! See you Saturday for pancakes! 🥞💛✨</h1>
+            `;
+        }
+    </script>
+
+</body>
+</html>
